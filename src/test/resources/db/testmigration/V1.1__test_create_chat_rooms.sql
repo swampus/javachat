@@ -1,0 +1,4 @@
+CREATE TABLE chat_rooms (
+    room_id INT AUTO_INCREMENT PRIMARY KEY,
+    room_name VARCHAR(100) UNIQUE NOT NULL
+);
