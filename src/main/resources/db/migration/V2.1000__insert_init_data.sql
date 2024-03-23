@@ -1,0 +1,1 @@
+INSERT INTO chat_rooms (room_id, room_name) VALUES (1, 'Riga');
