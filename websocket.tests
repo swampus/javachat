@@ -1,0 +1,24 @@
+//Send Message
+//Replace with a token obtained via REST /auth
+
+const WebSocket = require('ws');
+
+const ws = new WebSocket('ws://localhost:8080/chat');
+
+ws.on('open', function open() {
+  console.log('WebSocket connected');
+  const message = JSON.stringify({
+    "@class": "SendMessageRequest",
+    "userId": 1,
+    "roomId": 1,
+    "content": "Hello world!",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3MTEzMTMzODAsImV4cCI6MTcxMTM5OTc4MH0._obCiIbNyvK_VK7KtdaSYsCOOI7aRqaf5F-KYKU7v4Q"
+  });
+  ws.send(message);
+});
+
+ws.on('message', function incoming(data) {
+  console.log('Received message:', data);
+});
+
+

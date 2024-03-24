@@ -1,5 +1,6 @@
 package org.example.javachat.service;
 
+import org.example.javachat.exception.MiscommunicationException;
 import org.example.javachat.model.ChatRoom;
 import org.example.javachat.model.Message;
 import org.example.javachat.model.User;
@@ -9,6 +10,7 @@ import org.example.javachat.repository.UserRepository;
 import org.example.javachat.service.factory.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,10 +31,14 @@ public class MessageService {
     @Autowired
     private MessageFactory messageFactory;
 
-    public List<Message> fetchMessages(Long roomId) {
+    @Transactional
+    public List<Message> fetchMessages(Long userId, Long roomId) {
         Optional<ChatRoom> optionalChatRoom = chatRoomRepository.findById(roomId);
         if (optionalChatRoom.isPresent()) {
             ChatRoom room = optionalChatRoom.get();
+            if (room.getUsers().stream().noneMatch(t -> t.getUserId().equals(userId))) {
+                throw new MiscommunicationException("#E66: user not in room");
+            }
             return room.getMessages();
         }
         return Collections.emptyList();
@@ -49,6 +55,20 @@ public class MessageService {
             var message = messageFactory.createMessage(user, room, content);
             messageRepository.save(message);
         }
+    }
+
+    public void deleteMessage(Long messageId, Long userId) {
+        var optMsg = messageRepository.findById(messageId);
+        optMsg.ifPresent(t -> {
+            if (!userId.equals(t.getSender().getUserId())) {
+                throw new MiscommunicationException("#E55");
+            }
+            messageRepository.delete(t);
+        });
+    }
+
+    public Optional<Message> getById(Long messageId) {
+        return messageRepository.findById(messageId);
     }
 
 }

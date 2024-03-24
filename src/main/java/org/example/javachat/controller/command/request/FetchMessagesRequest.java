@@ -1,19 +1,37 @@
 package org.example.javachat.controller.command.request;
 
-public class FetchMessagesRequest implements JavaChatWebSocketRequest {
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-    private String roomName;
+@JsonTypeName("FetchMessagesRequest")
+public class FetchMessagesRequest extends JavaChatWebSocketRequest {
 
-    public String getRoomName() {
-        return roomName;
+    private Long roomId;
+    private String token;
+    @Override
+    public void accept(JavaChatRequestVisitor visitor) {
+        visitor.visit(this);
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public Long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
     public Class<? extends JavaChatWebSocketRequest> getRequestClass() {
         return FetchMessagesRequest.class;
     }
+
+
 }

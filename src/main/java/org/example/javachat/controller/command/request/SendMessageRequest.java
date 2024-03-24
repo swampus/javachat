@@ -1,9 +1,25 @@
 package org.example.javachat.controller.command.request;
 
-public class SendMessageRequest implements JavaChatWebSocketRequest {
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("SendMessageRequest")
+public class SendMessageRequest extends JavaChatWebSocketRequest {
     private Long userId;
     private Long roomId;
     private String content;
+    private String token;
+
+    @Override
+    public void accept(JavaChatRequestVisitor visitor) {
+        visitor.visit(this);
+    }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getUserId() {
         return userId;

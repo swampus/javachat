@@ -1,6 +1,8 @@
 package org.example.javachat.controller.command.factory;
 
-import org.example.javachat.controller.command.*;
+import org.example.javachat.controller.command.FetchMessagesCommand;
+import org.example.javachat.controller.command.JavaChatCommand;
+import org.example.javachat.controller.command.SendMessageCommand;
 import org.example.javachat.controller.command.request.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,20 +18,12 @@ public class CommandFactory {
             JavaChatCommand<? extends JavaChatWebSocketRequest>> commands;
 
     @Autowired
-    public CommandFactory(JoinRoomCommand joinCommand,
-                          LeaveRoomCommand leaveCommand,
-                          FetchMessagesCommand fetchMessagesCommand,
-                          SendMessageCommand sendMessageCommand,
-                          DeleteMessageCommand deleteMessageCommand,
-                          AuthCommand authCommand) {
+    public CommandFactory(FetchMessagesCommand fetchMessagesCommand,
+                          SendMessageCommand sendMessageCommand) {
         commands = new ConcurrentHashMap<>(new HashMap<>());
-        commands.put(JoinRoomRequest.class, joinCommand);
-        commands.put(LeaveRoomRequest.class, leaveCommand);
         commands.put(FetchMessagesRequest.class, fetchMessagesCommand);
-        commands.put(DeleteOwnMessageRequest.class, deleteMessageCommand);
         commands.put(SendMessageRequest.class, sendMessageCommand);
-        commands.put(AuthRequest.class, authCommand);
-    }
+     }
 
     public JavaChatCommand<? extends JavaChatWebSocketRequest> getCommand(Class<? extends JavaChatWebSocketRequest>
                                                                                   requestClass) {

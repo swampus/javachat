@@ -1,4 +1,4 @@
-CREATE TABLE user_chat_rooms (
+CREATE TABLE USER_CHAT_ROOMS (
     user_id INT,
     room_id INT,
     PRIMARY KEY (user_id, room_id),
