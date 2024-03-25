@@ -1,0 +1,23 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'YourContainerRegistryServiceConnection'  # Replace with your Azure Container Registry service connection
+      repository: 'yourrepository/javachat'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: |
+        $(Build.BuildId)
+
+  - task: AzureWebAppContainer@1
+    inputs:
+      azureSubscription: 'YourAzureSubscription'  # Replace with your Azure subscription
+      appName: 'your-web-app-name'
+      containers: 'yourregistry.azurecr.io/yourrepository/javachat:$(Build.BuildId)'
+      enableCD: true
+      useStagingEnvironment: false

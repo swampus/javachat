@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
     @Bean
     public ObjectMapper objectMapper() {
-        var objectMapper = new ObjectMapper();
-        //objectMapper.addMixIn(JavaChatWebSocketRequest.class, JavaChatWebSocketRequestMixin.class);
-        return objectMapper;
+        return new ObjectMapper();
     }
 }

@@ -13,8 +13,6 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
-  //  private final JwtTokenProvider jwtTokenProvider;
-
     private final WebSocketAuthHandler webSocketAuthHandler;
 
     public WebSocketConfig(WebSocketAuthHandler webSocketAuthHandler) {
