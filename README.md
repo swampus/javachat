@@ -21,7 +21,7 @@ Short description
     - Database UI: user: sa <empty passsword>  localhost:8080/h2-console
 
 #Usage
-To access Rest endpoints.
+To access Rest endpoints. (See JAVA_CHAT-collection file)
 
 - authentificate (obtain token): localhost:8080/api/v1/rest/auth
 
