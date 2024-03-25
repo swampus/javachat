@@ -37,7 +37,6 @@ public class JwtTokenProvider {
 
     @PostConstruct
     private void init() {
-        System.out.println("==> INIT");
         secretKey = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
