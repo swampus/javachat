@@ -9,7 +9,6 @@ import org.example.javachat.controller.command.request.JavaChatWebSocketRequest;
 import org.example.javachat.controller.command.request.SendMessageRequest;
 import org.example.javachat.controller.rest.filter.JwtTokenProvider;
 import org.example.javachat.exception.MiscommunicationException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 public class WebSocketAuthHandler extends TextWebSocketHandler {
