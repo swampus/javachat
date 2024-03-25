@@ -50,9 +50,11 @@ To access Rest endpoints. (See JAVA_CHAT-collection file)
 ```
 
 To access WebSocket Endpoints
-
-npm install ws
-create file for send message
+```
+- npm install ws
+``` 
+- 
+# - create file for send message
 
 ```
 const WebSocket = require('ws');
@@ -108,9 +110,9 @@ ws.on('message', function incoming(data) {
 
 
 # users
-user1 password1
-user2 password2
-user3 password3
+- user1 password1 
+- user2 password2 
+- user3 password3
 
 
 # TODO to make "real app"
