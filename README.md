@@ -119,3 +119,4 @@ user3 password3
 3. Implement Oauth2 and open-id for authentication or at least SSL connection. (current auth vulnerable to men in the middle)
 4. Possible add message-cache.
 5. Possible Shared data store or message broker (like Redis or Kafka).
+6. Add INTEGRATION test FitneSSe. Configure filter for run localy during test.
