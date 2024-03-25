@@ -111,3 +111,11 @@ ws.on('message', function incoming(data) {
 user1 password1
 user2 password2
 user3 password3
+
+
+# TODO to make "real app"
+1. Split REST and WEBSOCKET to different microservices.
+2. Configure kubernetes for multi pods. Round Robin. Monitoring and autoscaling
+3. Implement Oauth2 and open-id for authentication or at least SSL connection. (current auth vulnerable to men in the middle)
+4. Possible add message-cache.
+5. Possible Shared data store or message broker (like Redis or Kafka).
